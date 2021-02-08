@@ -1,0 +1,22 @@
+li {
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem 2rem;
+    margin-bottom: 1rem;
+}
+
+.removeitem {
+    background: red;
+    color: #fff;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.tododone{
+    text-decoration: line-through;
+}
+
+.completed {
+    margin-right: 1rem;
+}

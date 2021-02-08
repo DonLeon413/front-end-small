@@ -1,0 +1,13 @@
+<h1>Todo Application</h1>
+<div class="row row justify-content-md-center">
+  <div class="col-6" style="border: 2px solid gray; border-radius: 5px;">
+    <addtodo-form (onCreateTodo)="OnCreateTodo($event)"></addtodo-form>
+  </div>
+</div>
+<hr>
+<div class="row row justify-content-md-center">
+  <div class="col-6" style="border: 2px solid gray; border-radius: 5px;">
+    <todo-list [Todos]="Todos" (onDelete)="OnDelete($event)"></todo-list>
+  </div>
+</div>    
+<router-outlet></router-outlet>

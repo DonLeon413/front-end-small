@@ -1,0 +1,9 @@
+<li>    
+    <span [ngClass]="{tododone:Todo.Completed}">
+        <input type="checkbox" class="completed"
+            [ngModel]="Todo.Completed" (ngModelChange)="OnCompletedChange($event)">
+        <strong>{{Index}}</strong>
+        {{Todo.Title}}
+    </span>
+    <button class="removeitem" (click)="OnClickDelete($event)">&times;</button>
+</li>
