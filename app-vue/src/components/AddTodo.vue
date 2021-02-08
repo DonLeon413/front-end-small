@@ -10,7 +10,6 @@
 </template>
 
 <script lang="ts">
-import { TodoModel } from '@/models/todomodel';
 import { defineComponent } from "vue"
 export default defineComponent({
   name: 'AddTodo',
@@ -24,7 +23,7 @@ export default defineComponent({
       OnSubmit() {
           if( this.Title.trim() )
           {
-              const new_todo = new TodoModel( Date.now(), this.Title, false );
+              const new_todo = { ID: Date.now(), Title: this.Title, Completed: false };
               this.$emit('add-todo', new_todo );
               this.Title = "";
           }

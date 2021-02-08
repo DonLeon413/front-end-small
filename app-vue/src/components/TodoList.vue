@@ -3,7 +3,7 @@
     <ul>
         <TodoItem v-for="( todo, index ) in todos" :key="todo" 
                   v-bind:todo="todo"
-                  v-bind:idx = "index" 
+                  v-bind:idx="index+1" 
                   v-on:switch-completed="OnSwitchCompleted"
                   v-on:delete-todo="OnDeleteTodo"></TodoItem>        
     </ul>
@@ -11,9 +11,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue"
-import TodoItem from '@/components/TodoItem.vue';
-import {SwitchModel} from '@/models/switchmodel';
-import {DeleteModel} from '@/models/deletemodel';
+import TodoItem from '@/components/TodoItem.vue'
 export default defineComponent({
   name: 'TodoList',
   components: {
@@ -21,12 +19,12 @@ export default defineComponent({
   },
   props: ['todos'],
   methods:{
-    OnSwitchCompleted( args: SwitchModel )
+    OnSwitchCompleted( args: any )
     {
         console.log( args );
         this.$emit('switch-completed', args );
     },
-    OnDeleteTodo( args: DeleteModel )
+    OnDeleteTodo( args: any )
     {       
         this.$emit('delete-todo', args );
     }

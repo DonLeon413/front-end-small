@@ -17,9 +17,7 @@ import { defineComponent } from 'vue';
 //import HelloWorld1 from '@/components/HelloWorld.vue';
 import TodoList from '@/components/TodoList.vue';
 import AddTodo from '@/components/AddTodo.vue';
-import {TodoModel} from '@/models/todomodel';
-import {SwitchModel} from '@/models/switchmodel';
-import {DeleteModel} from '@/models/deletemodel';
+
 export default defineComponent({
   name: 'App',
   components: {
@@ -27,25 +25,28 @@ export default defineComponent({
     TodoList
   },
   data() {
-    return { todos: [ new TodoModel( 1, 'Comprar pan.', false ), 
-                      new TodoModel( 2, 'Comprar cerveza.', true ),
-                      new TodoModel(3, 'Oficina.', false ),
-                      new TodoModel( 4, 'Viendo una pelicula.',false ) ]}},           
+    return { todos: [ { ID: 1, Title: 'Comprar pan.', Completed: false }, 
+                      { ID: 2, Title: 'Comprar cerveza.', Completed: true },
+                      { ID: 3, Title: 'Oficina.', Completed: false },
+                      { ID: 4, Title: 'Viendo una pelicula.', Completed: false } ]}},           
   methods: {
-    OnSwitchCompleted( args: SwitchModel ) {
+    OnSwitchCompleted( args: any ) {
+        
         for( var i = 0; i < this.todos.length; i++ ) {
             if( this.todos[i].ID === args.ID )
             {
+                console.log( 'found:' + args.NewCompleted );
                 this.todos[i].Completed = args.NewCompleted;
                 break;
             }
         }   
     },
-    OnAddTodo( newTodo: TodoModel ) {
+    OnAddTodo( newTodo: any ) {
         this.todos.push( newTodo );
     },
-    OnDeleteTodo( args: DeleteModel ) {
-        this.todos = this.todos.filter( ( item: TodoModel ) => {
+    OnDeleteTodo( args: any ) {
+
+        this.todos = this.todos.filter( ( item ) => {
               return ( item.ID !== args.ID );
         }) 
     }

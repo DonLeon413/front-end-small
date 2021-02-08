@@ -13,10 +13,8 @@
 </template>
 
 <script lang="ts">
-import { TodoModel } from '@/models/todomodel';
-import { DeleteModel } from '@/models/deletemodel';
 import { defineComponent } from "vue"
-import { SwitchModel } from '@/models/switchmodel';
+
 export default defineComponent({
   name: 'TodoItem',
   components: {
@@ -24,16 +22,16 @@ export default defineComponent({
   data() {
       return { Completed: false }
   },
-  props: { todo: { type: TodoModel, required: true },  idx: { type: Number, required: true } },
+  props: { todo: { type: Object, required: true },  idx: { type: Number, required: true } },
   created() {
         this.$data.Completed = this.todo.Completed;
     },
   methods:{
     OnDeleteModel() {
-      this.$emit('delete-todo', new DeleteModel( this.todo.ID ) );
+      this.$emit('delete-todo', { ID: this.todo.ID } );
     },
-    OnSwitchCompleted() {
-        this.$emit( 'switch-completed', new SwitchModel( this.todo.ID, !this.todo.Completed) );
+    OnSwitchCompleted() {        
+        this.$emit( 'switch-completed', { ID: this.todo.ID, NewCompleted: !this.todo.Completed } );        
     }
   }  
 });
